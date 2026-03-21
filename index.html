@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ben Ryan — Fine Art Photographer. Santa Barbara, California. Gallery, prints, and limited editions.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Ben Ryan — Photographer">
+<meta property="og:description" content="Fine art photography from Santa Barbara, California.">
+<meta property="og:type" content="website">
+<title>Ben Ryan — Photographer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS — KCM Brand adapted for Photography
+  ============================================================ */
+  :root {
+    --navy:      #2a4d6f;
+    --ocean:     #4A7BA7;
+    --gold:      #F4D03F;
+    --teal:      #008080;
+    --bg-start:  #0d1f35;
+    --bg-end:    #1a3349;
+    --white:     #f8f4ec;
+    --off-white: #ede8df;
+    --muted:     #8fa8be;
+    --border:    rgba(74,123,167,0.25);
+    --gold-dim:  rgba(244,208,63,0.15);
+    --overlay:   rgba(13,31,53,0.72);
+    --trans:     all 0.38s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg-start);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg-start); }
+  ::-webkit-scrollbar-thumb { background: var(--ocean); border-radius: 2px; }
+
+  /* ============================================================
+     NAVIGATION
+  ============================================================ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.5s ease, backdrop-filter 0.5s;
+  }
+
+  nav.scrolled {
+    background: rgba(13,31,53,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .nav-logo-mark {
+    width: 36px; height: 36px;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.25s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--ocean);
+    color: var(--ocean) !important;
+    padding: 9px 22px;
+    letter-spacing: 0.18em !important;
+    transition: var(--trans) !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--ocean) !important;
+    color: var(--white) !important;
+    border-color: var(--ocean);
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px; height: 1.5px;
+    background: var(--white);
+    transition: var(--trans);
+  }
+
+  /* ============================================================
+     HERO
+  ============================================================ */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(74,123,167,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,128,128,0.1) 0%, transparent 60%),
+      linear-gradient(160deg, var(--bg-start) 0%, #0f2a42 50%, var(--bg-end) 100%);
+  }
+
+  /* Animated grid lines */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,123,167,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,123,167,0.06) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridShift 25s linear infinite;
+  }
+
+  @keyframes gridShift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(80px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 120px 32px 80px;
+    animation: heroFadeIn 1.4s ease both;
+  }
+
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    animation: heroFadeIn 1.4s 0.2s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 8px;
+    animation: heroFadeIn 1.4s 0.3s ease both;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.15rem, 3vw, 1.65rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 48px;
+    animation: heroFadeIn 1.4s 0.45s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: heroFadeIn 1.4s 0.6s ease both;
+  }
+
+  .btn-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 40px;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    cursor: pointer;
+    transition: var(--trans);
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #f0c830;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(244,208,63,0.25);
+  }
+
+  .btn-secondary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 40px;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(248,244,236,0.3);
+    cursor: pointer;
+    transition: var(--trans);
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--white);
+    background: rgba(248,244,236,0.06);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: heroFadeIn 2s 1.2s ease both;
+  }
+
+  .hero-scroll span {
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.6); }
+  }
+
+  /* ============================================================
+     SECTION SHARED
+  ============================================================ */
+  section {
+    padding: 120px 48px;
+  }
+
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .section-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 64px;
+  }
+
+  /* ============================================================
+     FEATURED / ABOUT STRIP
+  ============================================================ */
+  #about {
+    background: linear-gradient(180deg, var(--bg-start) 0%, rgba(26,51,73,0.6) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: center;
+  }
+
+  .about-portrait {
+    position: relative;
+  }
+
+  .portrait-frame {
+    aspect-ratio: 4/5;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portrait-frame::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--border);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .portrait-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--navy) 0%, #162e47 100%);
+  }
+
+  .portrait-placeholder svg {
+    width: 60%; height: 60%;
+    opacity: 0.15;
+  }
+
+  .portrait-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px 24px 24px;
+    background: linear-gradient(transparent, rgba(13,31,53,0.92));
+    z-index: 3;
+  }
+
+  .portrait-caption .name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+
+  .portrait-caption .location {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .about-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--off-white);
+    margin-bottom: 24px;
+  }
+
+  .about-text p:last-of-type { margin-bottom: 40px; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ============================================================
+     GALLERY
+  ============================================================ */
+  #gallery {
+    background: var(--bg-end);
+  }
+
+  .gallery-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .filter-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: var(--trans);
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* Masonry grid */
+  .gallery-grid {
+    columns: 3;
+    column-gap: 16px;
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .gallery-item-inner {
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  .gallery-placeholder {
+    width: 100%;
+    display: block;
+    background: var(--navy);
+    transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .gallery-item:hover .gallery-placeholder {
+    transform: scale(1.04);
+  }
+
+  /* Generated photo-like placeholders */
+  .ph-1  { aspect-ratio: 4/5;  background: linear-gradient(135deg, #1a3a5c 0%, #0d2033 40%, #2a4d6f 100%); }
+  .ph-2  { aspect-ratio: 3/4;  background: linear-gradient(200deg, #0e2d45 0%, #1f3d55 60%, #2a5070 100%); }
+  .ph-3  { aspect-ratio: 1/1;  background: linear-gradient(45deg,  #162840 0%, #3d6a8a 100%); }
+  .ph-4  { aspect-ratio: 2/3;  background: linear-gradient(160deg, #0b1e2e 0%, #1e4060 100%); }
+  .ph-5  { aspect-ratio: 5/7;  background: linear-gradient(120deg, #24486a 0%, #0d2033 100%); }
+  .ph-6  { aspect-ratio: 3/2;  background: linear-gradient(80deg,  #122b40 0%, #2d5870 100%); }
+  .ph-7  { aspect-ratio: 4/3;  background: linear-gradient(220deg, #0a1e30 0%, #1e4a6a 100%); }
+  .ph-8  { aspect-ratio: 1/1;  background: linear-gradient(315deg, #183248 0%, #3060805c 100%); }
+  .ph-9  { aspect-ratio: 3/4;  background: linear-gradient(30deg,  #0f2840 0%, #2b5070 100%); }
+  .ph-10 { aspect-ratio: 4/5;  background: linear-gradient(170deg, #1a3a5c 0%, #0d2033 100%); }
+  .ph-11 { aspect-ratio: 5/4;  background: linear-gradient(55deg,  #243d55 0%, #0d2033 100%); }
+  .ph-12 { aspect-ratio: 2/3;  background: linear-gradient(340deg, #0c2338 0%, #305070 100%); }
+
+  /* Photo subject overlays */
+  .gallery-placeholder::after {
+    content: attr(data-subject);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(248,244,236,0.15);
+    letter-spacing: 0.1em;
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 40%, var(--overlay) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px 20px;
+    pointer-events: none;
+  }
+
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+  .gallery-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .gallery-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+
+  .gallery-series {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .gallery-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .gallery-item:hover .gallery-actions { opacity: 1; }
+
+  .icon-btn {
+    width: 36px; height: 36px;
+    background: rgba(13,31,53,0.8);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--trans);
+    color: var(--white);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .icon-btn:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  .gallery-load-more {
+    text-align: center;
+    margin-top: 64px;
+  }
+
+  /* ============================================================
+     LIGHTBOX
+  ============================================================ */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(13,31,53,0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    position: relative;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .lightbox-img {
+    max-height: 80vh;
+    max-width: 60vw;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .lightbox-img-placeholder {
+    width: 480px;
+    height: 600px;
+    max-width: 60vw;
+    max-height: 80vh;
+    background: var(--navy);
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .lightbox-info {
+    min-width: 240px;
+    max-width: 300px;
+  }
+
+  .lightbox-series {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .lightbox-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .lightbox-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .lightbox-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .lightbox-meta-row:last-of-type { border-bottom: none; }
+
+  .lightbox-meta-row span:last-child {
+    color: var(--white);
+    text-align: right;
+  }
+
+  .lightbox-price {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 24px 0 20px;
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 32px; right: 40px;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.25s;
+    z-index: 201;
+  }
+
+  .lightbox-close:hover { color: var(--white); }
+
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 1.2rem;
+    width: 48px; height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--trans);
+    z-index: 201;
+  }
+
+  .lightbox-nav:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .lightbox-nav.prev { left: 32px; }
+  .lightbox-nav.next { right: 32px; }
+
+  /* ============================================================
+     PRINT SHOP / COLLECTIONS
+  ============================================================ */
+  #prints {
+    background: linear-gradient(180deg, var(--bg-end) 0%, var(--bg-start) 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .prints-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .print-card {
+    background: rgba(42,77,111,0.15);
+    border: 1px solid var(--border);
+    transition: var(--trans);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .print-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74,123,167,0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .print-card:hover {
+    border-color: var(--ocean);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+  }
+
+  .print-card:hover::before { opacity: 1; }
+
+  .print-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  .print-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(248,244,236,0.1);
+    letter-spacing: 0.1em;
+  }
+
+  .pc-1 { background: linear-gradient(130deg, #1a3a5c 0%, #0d2240 100%); }
+  .pc-2 { background: linear-gradient(200deg, #172d44 0%, #2a4d6a 100%); }
+  .pc-3 { background: linear-gradient(40deg,  #0e2030 0%, #1e4060 100%); }
+
+  .print-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .print-body {
+    padding: 24px;
+  }
+
+  .print-collection {
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+
+  .print-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .print-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .print-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .print-price {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+  }
+
+  .print-editions {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .btn-small {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--ocean);
+    border: 1px solid var(--ocean);
+    cursor: pointer;
+    transition: var(--trans);
+  }
+
+  .btn-small:hover {
+    background: var(--ocean);
+    color: var(--white);
+  }
+
+  /* ============================================================
+     COPYRIGHT PROTECTION NOTICE
+  ============================================================ */
+  .protection-strip {
+    background: rgba(42,77,111,0.2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 48px;
+  }
+
+  .protection-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .protection-icon {
+    width: 20px; height: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .protection-text {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .protection-text strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ============================================================
+     PROCESS / WORKFLOW
+  ============================================================ */
+  #process {
+    background: var(--bg-start);
+    border-top: 1px solid var(--border);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .process-step {
+    position: relative;
+    padding-top: 24px;
+  }
+
+  .process-step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 1px;
+    background: var(--border);
+  }
+
+  .process-step:first-child::before {
+    background: var(--gold);
+  }
+
+  .step-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .step-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ============================================================
+     TESTIMONIALS
+  ============================================================ */
+  #testimonials {
+    background: linear-gradient(160deg, var(--bg-end) 0%, var(--bg-start) 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .testimonial-card {
+    background: rgba(42,77,111,0.12);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '\201C';
+    position: absolute;
+    top: 20px; left: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.9;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .author-avatar {
+    width: 40px; height: 40px;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--white);
+  }
+
+  .author-title {
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+
+  /* ============================================================
+     CONTACT / COMMISSION
+  ============================================================ */
+  #contact {
+    background: var(--bg-start);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-detail:first-of-type { border-top: 1px solid var(--border); }
+
+  .contact-detail-icon {
+    width: 36px; height: 36px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(244,208,63,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .contact-detail-text {
+    font-size: 0.78rem;
+    color: var(--off-white);
+    letter-spacing: 0.04em;
+  }
+
+  .contact-detail-label {
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(42,77,111,0.2);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 14px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    outline: none;
+    transition: border-color 0.25s;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--ocean);
+    background: rgba(42,77,111,0.3);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(143,168,190,0.5);
+    font-style: italic;
+  }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--bg-start); }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  footer {
+    background: var(--bg-start);
+    border-top: 1px solid var(--border);
+    padding: 80px 48px 40px;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .footer-brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .footer-brand-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .footer-bio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-btn {
+    width: 36px; height: 36px;
+    background: rgba(42,77,111,0.2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--trans);
+  }
+
+  .social-btn:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .footer-col-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.25s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    color: rgba(143,168,190,0.6);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-legal a {
+    font-size: 0.62rem;
+    color: rgba(143,168,190,0.6);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.25s;
+  }
+
+  .footer-legal a:hover { color: var(--muted); }
+
+  /* ============================================================
+     WATERMARK / PROTECTION
+  ============================================================ */
+  /* Right-click disable on gallery images */
+  .gallery-item { -webkit-user-select: none; user-select: none; }
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  @media (max-width: 1100px) {
+    .prints-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { gap: 48px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 840px) {
+    section { padding: 80px 24px; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .gallery-grid { columns: 2; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-portrait { max-width: 400px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 64px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 60px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .lightbox-content { flex-direction: column; max-width: 95vw; }
+    .lightbox-img-placeholder { width: 90vw; height: 50vw; }
+    .lightbox-info { max-width: 90vw; }
+  }
+
+  @media (max-width: 540px) {
+    .gallery-grid { columns: 1; }
+    .prints-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ============================================================
+     SCROLL ANIMATIONS
+  ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Mobile nav overlay */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(13,31,53,0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .mobile-nav a:hover { color: var(--gold); }
+
+  .mobile-nav-close {
+    position: absolute;
+    top: 24px; right: 24px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* Notification toast */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: rgba(13,31,53,0.95);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    padding: 16px 24px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    z-index: 300;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: var(--trans);
+    max-width: 320px;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .toast-gold { border-color: var(--gold); color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="98" fill="#4A7BA7" stroke="#2a4d6f" stroke-width="1"/>
+      <polygon points="100,15 185,185 15,185" fill="#F4D03F" opacity="0.85"/>
+      <polygon points="100,15 15,185 15,55" fill="#8B6BA3" opacity="0.75"/>
+      <polygon points="100,15 185,55 185,185" fill="#6FA5A5" opacity="0.75"/>
+      <polygon points="15,55 100,100 15,185" fill="#CF7A5A" opacity="0.65"/>
+      <polygon points="185,55 100,100 185,185" fill="#9AAF7A" opacity="0.65"/>
+      <polygon points="100,55 145,100 100,145 55,100" fill="#E8D77F" opacity="0.6"/>
+      <circle cx="100" cy="100" r="50" fill="none" stroke="#2a4d6f" stroke-width="2.5"/>
+      <circle cx="100" cy="100" r="7" fill="#2a4d6f"/>
+    </svg>
+    Ben Ryan
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#prints">Prints</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Commission</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
+  <a href="#prints" onclick="closeMobileNav()">Prints</a>
+  <a href="#process" onclick="closeMobileNav()">Process</a>
+  <a href="#contact" onclick="closeMobileNav()">Commission</a>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Fine Art Photography · Santa Barbara, California</div>
+    <h1 class="hero-title">Ben <span>Ryan</span></h1>
+    <p class="hero-subtitle">Where light becomes language, and every frame tells an untold story.</p>
+    <div class="hero-actions">
+      <a href="#gallery" class="btn-primary">Explore the Gallery</a>
+      <a href="#prints" class="btn-secondary">Limited Editions</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <div class="portrait-frame">
+          <div class="portrait-placeholder">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="98" fill="#4A7BA7" stroke="#2a4d6f" stroke-width="1"/>
+              <polygon points="100,15 185,185 15,185" fill="#F4D03F" opacity="0.85"/>
+              <polygon points="100,15 15,185 15,55" fill="#8B6BA3" opacity="0.75"/>
+              <polygon points="100,15 185,55 185,185" fill="#6FA5A5" opacity="0.75"/>
+              <polygon points="100,55 145,100 100,145 55,100" fill="#E8D77F" opacity="0.6"/>
+              <circle cx="100" cy="100" r="50" fill="none" stroke="#2a4d6f" stroke-width="2.5"/>
+              <circle cx="100" cy="100" r="7" fill="#2a4d6f"/>
+            </svg>
+          </div>
+          <div class="portrait-caption">
+            <div class="name">Ben Ryan</div>
+            <div class="location">Santa Barbara · California</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <div class="section-label reveal">The Artist</div>
+        <h2 class="section-title reveal">A Lifetime of<br>Seeing Differently</h2>
+
+        <p class="reveal">
+          With over four decades behind the lens, I've come to understand that photography is not the art of capturing reality — it's the art of revealing the reality hidden within ordinary moments. Every image begins with silence, with waiting, with the willingness to be surprised.
+        </p>
+        <p class="reveal">
+          Based in Santa Barbara, California, my work spans the vast visual landscape of the American West — its oceanic light, its granite silence, its human texture. I bring to each image the same cross-disciplinary curiosity that has shaped my career across music, technology, and the visual arts.
+        </p>
+        <p class="reveal">
+          My photography is available as museum-quality archival prints, as limited-edition artist proofs, and through bespoke commissions for collectors, institutions, and private clients who value the irreplaceable.
+        </p>
+
+        <div class="about-stats reveal">
+          <div class="stat-item">
+            <div class="stat-num">45+</div>
+            <div class="stat-label">Years Behind<br>the Lens</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">12</div>
+            <div class="stat-label">Series &amp;<br>Collections</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4</div>
+            <div class="stat-label">U.S. Patents<br>Held</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY
+============================================================ -->
+<section id="gallery">
+  <div class="section-inner">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-title reveal">The Gallery</h2>
+    <p class="section-intro reveal">Selected works from ongoing series. Each image is available as a fine art archival print.</p>
+
+    <div class="gallery-filters reveal">
+      <button class="filter-btn active" data-filter="all">All Works</button>
+      <button class="filter-btn" data-filter="landscape">Landscape</button>
+      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn" data-filter="abstract">Abstract</button>
+      <button class="filter-btn" data-filter="coastal">Coastal</button>
+      <button class="filter-btn" data-filter="urban">Urban</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+
+      <div class="gallery-item reveal" data-category="landscape" onclick="openLightbox(0)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-1" data-subject="Pacific Light Series">
+            <div style="width:100%;height:100%;position:relative;overflow:hidden;">
+              <svg width="100%" height="100%" viewBox="0 0 300 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="g1" cx="60%" cy="30%"><stop offset="0%" stop-color="#f4d03f" stop-opacity="0.4"/><stop offset="100%" stop-color="#1a3a5c" stop-opacity="0"/></radialGradient>
+                </defs>
+                <rect width="300" height="380" fill="#1a3a5c"/>
+                <rect y="220" width="300" height="160" fill="#0d2240" opacity="0.8"/>
+                <ellipse cx="180" cy="110" rx="120" ry="80" fill="url(#g1)"/>
+                <line x1="0" y1="220" x2="300" y2="220" stroke="#4A7BA7" stroke-width="0.5" opacity="0.6"/>
+                <line x1="0" y1="230" x2="300" y2="228" stroke="#4A7BA7" stroke-width="0.3" opacity="0.3"/>
+                <line x1="0" y1="238" x2="300" y2="235" stroke="#4A7BA7" stroke-width="0.3" opacity="0.2"/>
+              </svg>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Pacific Light No. 7</div>
+              <div class="gallery-series">Coastal Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn" title="View">⊕</span>
+            <span class="icon-btn" title="Inquire" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-1" data-category="abstract" onclick="openLightbox(1)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-2">
+            <svg width="100%" height="100%" viewBox="0 0 300 370" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="370" fill="#172d44"/>
+              <circle cx="150" cy="180" r="140" fill="none" stroke="#4A7BA7" stroke-width="0.5" opacity="0.4"/>
+              <circle cx="150" cy="180" r="90" fill="none" stroke="#F4D03F" stroke-width="0.3" opacity="0.2"/>
+              <circle cx="150" cy="180" r="40" fill="#2a4d6f" opacity="0.5"/>
+              <polygon points="150,60 240,280 60,280" fill="none" stroke="#F4D03F" stroke-width="0.4" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Modal Geometry I</div>
+              <div class="gallery-series">Abstract Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-2" data-category="portrait" onclick="openLightbox(2)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-3">
+            <svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="300" fill="#162840"/>
+              <circle cx="150" cy="120" r="65" fill="#1f3d55" stroke="#4A7BA7" stroke-width="0.5" opacity="0.7"/>
+              <rect x="110" y="185" width="80" height="100" rx="4" fill="#1a3a5c" opacity="0.8"/>
+              <rect x="0" y="260" width="300" height="40" fill="#0d2033" opacity="0.9"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Solitude</div>
+              <div class="gallery-series">Portrait Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="landscape" onclick="openLightbox(3)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-4">
+            <svg width="100%" height="100%" viewBox="0 0 300 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="450" fill="#0b1e2e"/>
+              <polygon points="0,300 80,180 150,240 220,160 300,280 300,450 0,450" fill="#1e4060" opacity="0.9"/>
+              <circle cx="240" cy="80" r="30" fill="#F4D03F" opacity="0.12"/>
+              <circle cx="240" cy="80" r="5" fill="#F4D03F" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Sierra Dusk</div>
+              <div class="gallery-series">Landscape Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-1" data-category="coastal" onclick="openLightbox(4)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-5">
+            <svg width="100%" height="100%" viewBox="0 0 300 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="420" fill="#24486a"/>
+              <rect y="320" width="300" height="100" fill="#0d2033"/>
+              <path d="M0,320 Q75,290 150,320 Q225,350 300,320" fill="#1a4060" opacity="0.6"/>
+              <path d="M0,340 Q75,310 150,340 Q225,365 300,340" fill="#1a4060" opacity="0.3"/>
+              <line x1="60" y1="0" x2="60" y2="320" stroke="rgba(74,123,167,0.1)" stroke-width="40"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Channel Islands</div>
+              <div class="gallery-series">Coastal Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-2" data-category="urban" onclick="openLightbox(5)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-6">
+            <svg width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="200" fill="#122b40"/>
+              <rect x="20" y="60" width="30" height="140" fill="#1e4060" opacity="0.8"/>
+              <rect x="60" y="40" width="25" height="160" fill="#1a3850" opacity="0.9"/>
+              <rect x="95" y="80" width="35" height="120" fill="#1e4060" opacity="0.7"/>
+              <rect x="140" y="50" width="20" height="150" fill="#2a5070" opacity="0.8"/>
+              <rect x="170" y="70" width="40" height="130" fill="#1a3850" opacity="0.9"/>
+              <rect x="220" y="45" width="30" height="155" fill="#1e4060" opacity="0.75"/>
+              <rect x="260" y="90" width="25" height="110" fill="#1a3850" opacity="0.8"/>
+              <rect x="0" y="160" width="300" height="40" fill="#0a1e2c" opacity="0.95"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Urban Nocturne</div>
+              <div class="gallery-series">Urban Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="abstract" onclick="openLightbox(6)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-7">
+            <svg width="100%" height="100%" viewBox="0 0 300 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="225" fill="#0a1e30"/>
+              <line x1="0" y1="112" x2="300" y2="112" stroke="#4A7BA7" stroke-width="0.5" opacity="0.5"/>
+              <line x1="150" y1="0" x2="150" y2="225" stroke="#4A7BA7" stroke-width="0.5" opacity="0.5"/>
+              <line x1="0" y1="0" x2="300" y2="225" stroke="#4A7BA7" stroke-width="0.3" opacity="0.3"/>
+              <line x1="300" y1="0" x2="0" y2="225" stroke="#4A7BA7" stroke-width="0.3" opacity="0.3"/>
+              <circle cx="150" cy="112" r="60" fill="none" stroke="#F4D03F" stroke-width="0.4" opacity="0.3"/>
+              <circle cx="150" cy="112" r="8" fill="#F4D03F" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Chromatic Field II</div>
+              <div class="gallery-series">Abstract Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-1" data-category="coastal" onclick="openLightbox(7)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-8">
+            <svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="300" fill="#183248"/>
+              <ellipse cx="150" cy="150" rx="130" ry="90" fill="none" stroke="#4A7BA7" stroke-width="0.4" opacity="0.5"/>
+              <path d="M20,200 Q150,140 280,200" fill="none" stroke="#F4D03F" stroke-width="0.4" opacity="0.3"/>
+              <path d="M20,220 Q150,165 280,220" fill="none" stroke="#F4D03F" stroke-width="0.3" opacity="0.2"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">Tide Pool Study</div>
+              <div class="gallery-series">Coastal Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-2" data-category="landscape" onclick="openLightbox(8)">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder ph-9">
+            <svg width="100%" height="100%" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="400" fill="#0f2840"/>
+              <polygon points="0,250 60,160 120,200 180,130 240,170 300,120 300,400 0,400" fill="#1a3a5c"/>
+              <rect y="0" width="300" height="200" fill="#0f2840"/>
+              <circle cx="80" cy="90" r="3" fill="white" opacity="0.5"/>
+              <circle cx="150" cy="60" r="2" fill="white" opacity="0.4"/>
+              <circle cx="220" cy="100" r="2" fill="white" opacity="0.3"/>
+              <circle cx="270" cy="50" r="2" fill="white" opacity="0.5"/>
+              <circle cx="30" cy="40" r="1.5" fill="white" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div class="gallery-title">High Desert Stars</div>
+              <div class="gallery-series">Landscape Series</div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <span class="icon-btn">⊕</span>
+            <span class="icon-btn" onclick="event.stopPropagation();showToast('Contact us to inquire about this print.')">◈</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="gallery-load-more reveal">
+      <button class="btn-secondary" onclick="showToast('Full gallery coming soon. Contact for the complete portfolio.')">
+        View Complete Portfolio
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LIGHTBOX
+============================================================ -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <button class="lightbox-nav prev" onclick="navLightbox(-1)">‹</button>
+  <button class="lightbox-nav next" onclick="navLightbox(1)">›</button>
+  <button class="lightbox-close" onclick="closeLightbox()">
+    <span style="font-size:18px;">✕</span> Close
+  </button>
+
+  <div class="lightbox-content">
+    <div class="lightbox-img-placeholder" id="lightboxImg">
+      <svg width="100%" height="100%" viewBox="0 0 480 600" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="600" fill="#1a3a5c"/>
+        <circle cx="240" cy="240" r="120" fill="none" stroke="#4A7BA7" stroke-width="0.5" opacity="0.5"/>
+        <polygon points="240,80 380,420 100,420" fill="none" stroke="#F4D03F" stroke-width="0.4" opacity="0.3"/>
+        <circle cx="240" cy="240" r="8" fill="#F4D03F" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <div class="lightbox-info">
+      <div class="lightbox-series" id="lbSeries">Coastal Series</div>
+      <div class="lightbox-title" id="lbTitle">Pacific Light No. 7</div>
+      <div class="lightbox-desc" id="lbDesc">
+        Morning fog lifting over the Santa Barbara coast at low tide — the sea giving back the light it borrowed from the sky.
+      </div>
+
+      <div class="lightbox-meta-row">
+        <span>Medium</span><span id="lbMedium">Archival Pigment Print</span>
+      </div>
+      <div class="lightbox-meta-row">
+        <span>Edition</span><span id="lbEdition">Limited to 25</span>
+      </div>
+      <div class="lightbox-meta-row">
+        <span>Sizes Available</span><span id="lbSizes">16×20 · 24×30 · 40×50</span>
+      </div>
+      <div class="lightbox-meta-row">
+        <span>Year</span><span id="lbYear">2024</span>
+      </div>
+
+      <div class="lightbox-price" id="lbPrice">From $480</div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn-primary" style="font-size:0.62rem;padding:13px 28px;" onclick="showToast('Redirecting to purchase inquiry...')">Acquire Print</button>
+        <button class="btn-secondary" style="font-size:0.62rem;padding:13px 28px;" onclick="showToast('Download info sheet for this print.')">Info Sheet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     COPYRIGHT PROTECTION
+============================================================ -->
+<div class="protection-strip">
+  <div class="protection-inner">
+    <svg class="protection-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z"/>
+    </svg>
+    <p class="protection-text">
+      <strong>© Ben Ryan. All rights reserved.</strong> All photographs are protected by copyright law. Unauthorized reproduction, distribution, or commercial use of any image on this site is strictly prohibited. Images are digitally watermarked and monitored. Licensed use inquiries: contact@benryanphotographer.com
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PRINTS SHOP
+============================================================ -->
+<section id="prints">
+  <div class="section-inner">
+    <div class="section-label reveal">Fine Art Prints</div>
+    <h2 class="section-title reveal">Limited Editions</h2>
+    <p class="section-intro reveal">Museum-quality archival prints on Hahnemühle paper. Each edition is signed, numbered, and issued with a certificate of authenticity.</p>
+
+    <div class="prints-grid">
+
+      <div class="print-card reveal">
+        <div class="print-img pc-1">
+          <div class="print-img-placeholder">Pacific Light Series</div>
+        </div>
+        <div class="print-badge">Bestseller</div>
+        <div class="print-body">
+          <div class="print-collection">Coastal Collection</div>
+          <div class="print-title">Pacific Light Series</div>
+          <p class="print-desc">Seven works exploring the quality of coastal light at the Santa Barbara waterfront — dawn through dusk.</p>
+          <div class="print-footer">
+            <div>
+              <div class="print-price">$480 – $1,200</div>
+              <div class="print-editions">Edition of 25</div>
+            </div>
+            <button class="btn-small" onclick="showToast('Opening Pacific Light Series collection...')">View Series</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="print-card reveal reveal-delay-1">
+        <div class="print-img pc-2">
+          <div class="print-img-placeholder">Geometric Silence</div>
+        </div>
+        <div class="print-body">
+          <div class="print-collection">Abstract Collection</div>
+          <div class="print-title">Geometric Silence</div>
+          <p class="print-desc">Abstract studies drawn from musical geometry and visual theory — light as mathematics, shadow as rest.</p>
+          <div class="print-footer">
+            <div>
+              <div class="print-price">$380 – $950</div>
+              <div class="print-editions">Edition of 15</div>
+            </div>
+            <button class="btn-small" onclick="showToast('Opening Geometric Silence collection...')">View Series</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="print-card reveal reveal-delay-2">
+        <div class="print-img pc-3">
+          <div class="print-img-placeholder">Western Nocturnes</div>
+        </div>
+        <div class="print-badge" style="background:var(--teal);color:white;">New</div>
+        <div class="print-body">
+          <div class="print-collection">Landscape Collection</div>
+          <div class="print-title">Western Nocturnes</div>
+          <p class="print-desc">High-desert nightscapes from California and beyond — the hour when the landscape reveals its soul.</p>
+          <div class="print-footer">
+            <div>
+              <div class="print-price">$540 – $1,400</div>
+              <div class="print-editions">Edition of 10</div>
+            </div>
+            <button class="btn-small" onclick="showToast('Opening Western Nocturnes collection...')">View Series</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:48px;padding:40px;border:1px solid var(--border);background:rgba(42,77,111,0.1);" class="reveal">
+      <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;flex-wrap:wrap;">
+        <div>
+          <div class="section-label" style="margin-bottom:8px;">Bespoke Prints</div>
+          <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;font-weight:400;color:var(--white);margin-bottom:8px;letter-spacing:0.05em;">Custom Framing &amp; Installation</h3>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--muted);">We offer full-service print acquisition — custom sizing, gallery framing, white-glove delivery, and installation consulting for collectors and interiors.</p>
+        </div>
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Inquire</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+============================================================ -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-label reveal">The Craft</div>
+    <h2 class="section-title reveal">From Vision to Wall</h2>
+    <p class="section-intro reveal">Every print begins with intention and ends with precision. Here is how I work.</p>
+
+    <div class="process-steps">
+
+      <div class="process-step reveal">
+        <div class="step-num">01 — Vision</div>
+        <div class="step-title">The Seeing</div>
+        <p class="step-desc">Photography begins before the camera appears. I spend time with a location — its rhythm, its light cycles, its human texture — until the right moment becomes inevitable.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-num">02 — Capture</div>
+        <div class="step-title">The Moment</div>
+        <p class="step-desc">Shot on medium-format digital or large-format film depending on the project's demands. I favor natural light, minimal intervention, and the willingness to wait as long as the image requires.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-num">03 — Development</div>
+        <div class="step-title">The Refinement</div>
+        <p class="step-desc">Post-processing is treated as a darkroom craft, not a correction. Color, tone, and luminosity are developed to honor what the eye actually saw — not what the sensor recorded.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-num">04 — Edition</div>
+        <div class="step-title">The Object</div>
+        <p class="step-desc">Printed on Hahnemühle Photo Rag or Fine Art Pearl, using archival pigment inks rated for 100+ years. Each print is signed, numbered, embossed, and issued with a certificate of authenticity.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-label reveal">Collectors &amp; Clients</div>
+    <h2 class="section-title reveal">What They Say</h2>
+
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">Ben's photographs don't decorate a room — they inhabit it. The Pacific Light series we acquired has become the visual center of our home. Worth every penny, and we've purchased from three galleries over the years.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MH</div>
+          <div>
+            <div class="author-name">Margaret H.</div>
+            <div class="author-title">Private Collector · Santa Barbara</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-text">We commissioned Ben for our firm's main reception space. The result was transformative. He spent time understanding our culture and delivered a single image that has sparked more client conversations than any piece of branding we've ever done.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RP</div>
+          <div>
+            <div class="author-name">Robert P.</div>
+            <div class="author-title">Principal · Architecture Firm</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <p class="testimonial-text">The print quality is extraordinary. I've purchased fine art photography from galleries in New York and Los Angeles, and Ben's archival output stands with the best of them. His attention to color accuracy and paper selection is meticulous.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JL</div>
+          <div>
+            <div class="author-name">James L.</div>
+            <div class="author-title">Collector · Los Angeles</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label reveal">Let's Connect</div>
+        <h2 class="section-title reveal">Commission<br>a Work</h2>
+        <p class="reveal">Whether you're acquiring a print from an existing series, commissioning a new work for your home or institution, or seeking a custom portrait session — I welcome conversations with serious collectors and clients.</p>
+        <p class="reveal">Response within 48 hours. All inquiries are treated with complete discretion.</p>
+
+        <div class="contact-detail reveal">
+          <div class="contact-detail-icon">✉</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-text">contact@benryanphotographer.com</div>
+          </div>
+        </div>
+
+        <div class="contact-detail reveal">
+          <div class="contact-detail-icon">◎</div>
+          <div>
+            <div class="contact-detail-label">Studio</div>
+            <div class="contact-detail-text">Santa Barbara, California</div>
+          </div>
+        </div>
+
+        <div class="contact-detail reveal">
+          <div class="contact-detail-icon">◈</div>
+          <div>
+            <div class="contact-detail-label">Print Inquiries</div>
+            <div class="contact-detail-text">prints@benryanphotographer.com</div>
+          </div>
+        </div>
+
+        <div class="about-stats reveal" style="margin-top:40px;padding-top:40px;">
+          <div class="stat-item">
+            <div class="stat-num">48h</div>
+            <div class="stat-label">Response<br>Time</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Archival<br>Materials</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Ship</div>
+            <div class="stat-label">Worldwide<br>Available</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form reveal" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" placeholder="Your first name" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Your last name" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="inquiry">Type of Inquiry</label>
+            <select id="inquiry" name="inquiry">
+              <option value="">— Select —</option>
+              <option>Print Acquisition</option>
+              <option>Commission a New Work</option>
+              <option>Portrait Session</option>
+              <option>Licensing / Commercial</option>
+              <option>Gallery / Exhibition</option>
+              <option>Press / Media</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Budget Range (Optional)</label>
+            <select id="budget" name="budget">
+              <option value="">— Select —</option>
+              <option>Under $500</option>
+              <option>$500 – $1,500</option>
+              <option>$1,500 – $5,000</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,000+</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about the work you're looking for, the space it will live in, or the commission you have in mind..." required></textarea>
+          </div>
+
+          <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:12px;">
+            <input type="checkbox" id="consent" required style="margin-top:3px;width:auto;flex-shrink:0;height:auto;padding:0;cursor:pointer;">
+            <label for="consent" style="font-size:0.62rem;color:var(--muted);letter-spacing:0.04em;cursor:pointer;line-height:1.6;">
+              I consent to Ben Ryan Photography storing my information to respond to this inquiry. No spam, ever. Full privacy policy available on request.
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary" style="align-self:flex-start;">
+            Send Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Ben Ryan</div>
+        <div class="footer-brand-tag">Fine Art Photography · Santa Barbara</div>
+        <p class="footer-bio">
+          Four decades of seeing the world as a series of unrepeatable moments, each one worth preserving with care, craft, and complete intention.
+        </p>
+        <div class="footer-social">
+          <span class="social-btn" title="Instagram" onclick="showToast('Instagram: @benryanphotographer')">In</span>
+          <span class="social-btn" title="500px" onclick="showToast('View full portfolio on 500px')">5X</span>
+          <span class="social-btn" title="LinkedIn" onclick="showToast('LinkedIn profile')">Li</span>
+          <span class="social-btn" title="Email" onclick="showToast('contact@benryanphotographer.com')">✉</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Gallery</div>
+        <ul class="footer-links">
+          <li><a href="#gallery">All Works</a></li>
+          <li><a href="#gallery">Coastal Series</a></li>
+          <li><a href="#gallery">Landscape Series</a></li>
+          <li><a href="#gallery">Abstract Series</a></li>
+          <li><a href="#gallery">Portrait Series</a></li>
+          <li><a href="#gallery">Urban Series</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Prints</div>
+        <ul class="footer-links">
+          <li><a href="#prints">Limited Editions</a></li>
+          <li><a href="#prints">Pacific Light Series</a></li>
+          <li><a href="#prints">Geometric Silence</a></li>
+          <li><a href="#prints">Western Nocturnes</a></li>
+          <li><a href="#prints">Custom Framing</a></li>
+          <li><a href="#contact">Commissions</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Information</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Ben Ryan</a></li>
+          <li><a href="#process">The Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#" onclick="showToast('Shipping & Returns policy coming soon.')">Shipping &amp; Returns</a></li>
+          <li><a href="#" onclick="showToast('Certificate of Authenticity details coming soon.')">Authentication</a></li>
+          <li><a href="https://keyscodesandmodes.com" target="_blank" rel="noopener">KCM Music Platform</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        © 2025 Ben Ryan Photography. All rights reserved. All images are copyright protected and may not be reproduced without written permission.
+      </div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Licensing</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+/* ---- NAV SCROLL ---- */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ---- MOBILE NAV ---- */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.add('open');
+});
+document.getElementById('mobileNavClose').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.remove('open');
+});
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+}
+
+/* ---- SCROLL REVEAL ---- */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ---- GALLERY FILTER ---- */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const cat = item.dataset.category;
+      item.style.opacity = (filter === 'all' || cat === filter) ? '1' : '0.25';
+      item.style.pointerEvents = (filter === 'all' || cat === filter) ? 'all' : 'none';
+    });
+  });
+});
+
+/* ---- LIGHTBOX ---- */
+const galleryData = [
+  { series:'Coastal Series', title:'Pacific Light No. 7', desc:'Morning fog lifting over the Santa Barbara coast at low tide — the sea giving back the light it borrowed from the sky.', medium:'Archival Pigment Print', edition:'Limited to 25', sizes:'16×20 · 24×30 · 40×50', year:'2024', price:'From $480' },
+  { series:'Abstract Series', title:'Modal Geometry I', desc:'Inspired by the visual geometry of music theory — intervals, modes, and harmonic relationships rendered as pure form and light.', medium:'Archival Pigment Print', edition:'Limited to 15', sizes:'20×24 · 30×36 · 48×60', year:'2023', price:'From $380' },
+  { series:'Portrait Series', title:'Solitude', desc:'A study in interior silence. The subject at rest, the light barely there — enough to see what the camera can see when the world goes still.', medium:'Archival Pigment Print', edition:'Artist\'s Proof × 5', sizes:'16×20 · 24×30', year:'2024', price:'From $650' },
+  { series:'Landscape Series', title:'Sierra Dusk', desc:'The last twenty minutes of light on the eastern Sierra Nevada — that particular hour when the granite turns to copper and the sky forgets to be blue.', medium:'Archival Pigment Print', edition:'Limited to 10', sizes:'20×30 · 40×60 · 50×75', year:'2023', price:'From $540' },
+  { series:'Coastal Series', title:'Channel Islands', desc:'Looking south from the Santa Barbara coast toward the Channel Islands — a 40-mile seam where the Pacific meets the California sky.', medium:'Archival Pigment Print', edition:'Limited to 20', sizes:'16×20 · 24×36 · 40×60', year:'2024', price:'From $460' },
+  { series:'Urban Series', title:'Urban Nocturne', desc:'Santa Barbara at 2am — the city with its guard down, lit from underneath, its geometry sharper than it is in daylight.', medium:'Archival Pigment Print', edition:'Limited to 25', sizes:'16×20 · 24×30 · 40×50', year:'2024', price:'From $420' },
+  { series:'Abstract Series', title:'Chromatic Field II', desc:'Light measured as frequency. Color treated as harmonic structure. A visual echo of the music theory that has animated forty years of creative life.', medium:'Archival Pigment Print', edition:'Limited to 12', sizes:'20×20 · 36×36 · 50×50', year:'2024', price:'From $500' },
+  { series:'Coastal Series', title:'Tide Pool Study', desc:'The ecosystem of a single tide pool photographed over the course of one low-tide morning — a universe the size of a bathtub, teeming with intent.', medium:'Archival Pigment Print', edition:'Limited to 30', sizes:'16×20 · 24×30', year:'2023', price:'From $320' },
+  { series:'Landscape Series', title:'High Desert Stars', desc:'A four-hour exposure in the Mojave. The stars drew themselves; the camera only kept the record. The result is a time-lapse of eternity.', medium:'Archival Pigment Print', edition:'Limited to 10', sizes:'20×30 · 40×60 · 60×90', year:'2024', price:'From $680' },
+];
+let currentIdx = 0;
+
+function openLightbox(idx) {
+  currentIdx = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOnBg(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+function navLightbox(dir) {
+  currentIdx = (currentIdx + dir + galleryData.length) % galleryData.length;
+  updateLightbox();
+}
+
+function updateLightbox() {
+  const d = galleryData[currentIdx];
+  document.getElementById('lbSeries').textContent = d.series;
+  document.getElementById('lbTitle').textContent = d.title;
+  document.getElementById('lbDesc').textContent = d.desc;
+  document.getElementById('lbMedium').textContent = d.medium;
+  document.getElementById('lbEdition').textContent = d.edition;
+  document.getElementById('lbSizes').textContent = d.sizes;
+  document.getElementById('lbYear').textContent = d.year;
+  document.getElementById('lbPrice').textContent = d.price;
+}
+
+/* Keyboard nav for lightbox */
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+
+/* ---- RIGHT-CLICK PROTECTION ---- */
+document.querySelectorAll('.gallery-item, .print-card, .lightbox-img-placeholder').forEach(el => {
+  el.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    showToast('© Ben Ryan — Images are copyright protected.', true);
+  });
+});
+
+/* ---- DRAG PROTECTION ---- */
+document.querySelectorAll('img, svg').forEach(el => {
+  el.addEventListener('dragstart', e => e.preventDefault());
+});
+
+/* ---- FORM SUBMIT ---- */
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Inquiry Sent ✓';
+    btn.style.background = '#008080';
+    showToast('Thank you! I\'ll be in touch within 48 hours.', true);
+    setTimeout(() => {
+      e.target.reset();
+      btn.textContent = 'Send Inquiry';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 4000);
+  }, 1200);
+}
+
+/* ---- TOAST ---- */
+let toastTimer;
+function showToast(msg, gold = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (gold ? ' toast-gold' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = 'toast'; }, 4000);
+}
+</script>
+</body>
+</html>

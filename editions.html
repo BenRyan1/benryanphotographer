@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Limited Editions — Ben Ryan Photography</title>
+<meta name="description" content="Museum-quality limited edition archival prints. Signed, numbered, with Certificate of Authenticity. Secure checkout via Stripe. Ben Ryan Photography, Santa Barbara CA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2a4d6f;--ocean:#4A7BA7;--gold:#F4D03F;--teal:#008080;
+  --bg0:#060c15;--bg1:#0d1f35;--bg2:#162d45;
+  --white:#f5f0e8;--off:#ddd5c5;--muted:#7a9ab8;--dim:#4a6a84;
+  --border:rgba(74,123,167,.18);--b2:rgba(74,123,167,.35);
+  --gbg:rgba(244,208,63,.07);--gbdr:rgba(244,208,63,.22);
+  --over:rgba(6,12,21,.88);--ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg0);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:var(--navy)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg0)}::-webkit-scrollbar-thumb{background:var(--ocean)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:66px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,12,21,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.nlm{width:30px;height:30px;flex-shrink:0}
+.nlt{font-family:'Cinzel',serif;font-size:.98rem;font-weight:600;letter-spacing:.13em;color:var(--white)}
+.nav-links{display:flex;gap:34px;list-style:none;align-items:center}
+.nav-links a{font-size:.59rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .22s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .28s;transform-origin:left}
+.nav-links a:hover,.nav-links a.cur{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.cur::after{transform:scaleX(1)}
+.ncta{border:1px solid var(--gold)!important;color:var(--gold)!important;padding:7px 16px!important;font-size:.57rem!important;font-weight:600!important;letter-spacing:.18em!important}
+.ncta:hover{background:var(--gold)!important;color:var(--navy)!important}
+.ncta::after{display:none!important}
+
+/* HERO */
+.hero{padding:110px 48px 72px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 78% 50%,rgba(42,77,111,.16) 0%,transparent 65%),radial-gradient(ellipse 35% 45% at 15% 80%,rgba(0,128,128,.07) 0%,transparent 55%)}
+.hi{max-width:1300px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.hl .ey{font-size:.57rem;font-weight:600;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:10px}
+.hl .ey::before{content:'';width:24px;height:1px;background:var(--gold);flex-shrink:0}
+.hl h1{font-family:'Cinzel',serif;font-size:clamp(2.4rem,5.5vw,4.8rem);font-weight:400;letter-spacing:.07em;line-height:1.05;color:var(--white);margin-bottom:18px}
+.hl p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;font-weight:300;color:var(--muted);max-width:420px;line-height:1.88;margin-bottom:30px}
+.trust{display:flex;gap:22px;flex-wrap:wrap}
+.tm{display:flex;align-items:center;gap:7px;font-size:.58rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.tm::before{content:'✓';color:var(--gold);font-size:.65rem}
+/* Print stack visual */
+.hv{position:relative;height:420px}
+.stk{position:absolute;overflow:hidden;border:1px solid var(--b2)}
+.sk1{width:72%;height:82%;top:0;right:0;transform:rotate(2.8deg);background:var(--bg1)}
+.sk2{width:72%;height:82%;top:18px;right:18px;transform:rotate(-1.8deg);background:var(--bg2)}
+.skm{width:78%;height:88%;bottom:0;left:0;background:var(--bg1);z-index:2;transform:rotate(-0.5deg)}
+.skm-inner{width:100%;height:100%;position:relative;overflow:hidden}
+.skm svg{position:absolute;inset:0;width:100%;height:100%}
+.stk-lbl{position:absolute;bottom:0;left:0;right:0;padding:14px;background:linear-gradient(transparent,var(--over));z-index:3}
+.stk-lbl-t{font-family:'Cinzel',serif;font-size:.88rem;font-weight:600;letter-spacing:.07em;color:var(--white)}
+.stk-lbl-s{font-size:.53rem;font-weight:500;letter-spacing:.19em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+
+/* PROCESS BAR */
+.proc{padding:48px;background:var(--bg1);border-bottom:1px solid var(--border)}
+.pi{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:center}
+.ps{padding:0 20px;text-align:center;position:relative}
+.ps:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--b2);font-size:.9rem}
+.ps-icon{font-size:1.4rem;margin-bottom:9px;display:block}
+.ps-lbl{font-size:.55rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.ps-desc{font-size:.62rem;color:var(--muted);letter-spacing:.04em;line-height:1.55}
+
+/* SECTION WRAPPER */
+.wrap{padding:72px 48px 100px;max-width:1300px;margin:0 auto}
+.sec-ey{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:11px;display:flex;align-items:center;gap:10px}
+.sec-ey::before{content:'';width:24px;height:1px;background:var(--gold);flex-shrink:0}
+.sec-t{font-family:'Cinzel',serif;font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:400;letter-spacing:.06em;color:var(--white);margin-bottom:44px}
+
+/* FEATURED — full-width split card */
+.feat{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--b2);background:linear-gradient(135deg,rgba(42,77,111,.1),transparent 55%);margin-bottom:28px;transition:border-color .3s}
+.feat:hover{border-color:var(--ocean)}
+.feat-img{aspect-ratio:4/3;background:var(--bg2);position:relative;overflow:hidden}
+.feat-img svg{position:absolute;inset:0;width:100%;height:100%}
+.feat-body{padding:48px 40px;display:flex;flex-direction:column;justify-content:center}
+.fb-badge{display:inline-flex;align-items:center;gap:7px;font-size:.54rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:5px 13px;background:var(--gbg);border:1px solid var(--gbdr);color:var(--gold);margin-bottom:18px;align-self:flex-start}
+.fb-ser{font-size:.55rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.fb-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:400;letter-spacing:.07em;line-height:1.12;color:var(--white);margin-bottom:12px}
+.fb-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;font-weight:300;color:var(--muted);line-height:1.88;margin-bottom:24px}
+
+/* Scarcity */
+.sc{margin-bottom:22px}
+.sc-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.sc-lbl{font-size:.55rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--muted)}
+.sc-num{font-family:'Cinzel',serif;font-size:.82rem}
+.sc-num.hot{color:#e85a20}.sc-num.ok{color:var(--gold)}
+.sc-bar{height:4px;background:rgba(74,123,167,.18);border-radius:2px;overflow:hidden}
+.sc-fill{height:100%;border-radius:2px;transition:width .6s var(--ease)}
+.sc-fill.hot{background:linear-gradient(90deg,#e85a20,#e84040)}
+.sc-fill.ok{background:linear-gradient(90deg,var(--teal),var(--gold))}
+
+/* Size table */
+.sz-tbl{width:100%;border-collapse:collapse;margin-bottom:22px}
+.sz-tbl th{font-size:.53rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);padding:7px 0;text-align:left;border-bottom:1px solid var(--border)}
+.sz-tbl td{padding:9px 0;font-size:.72rem;letter-spacing:.04em;border-bottom:1px solid rgba(74,123,167,.07);color:var(--off);vertical-align:middle}
+.sz-tbl td:last-child{text-align:right;font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem}
+.szradio{appearance:none;width:13px;height:13px;border:1px solid var(--b2);border-radius:50%;cursor:pointer;margin-right:8px;vertical-align:middle;transition:all .2s;flex-shrink:0}
+.szradio:checked{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 3px var(--gbg)}
+.szrow{cursor:pointer}
+.szrow:hover td{color:var(--white)}
+.szrow.sel td{color:var(--white)}
+
+.bacq{width:100%;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:17px;background:var(--gold);color:var(--navy);border:none;cursor:pointer;transition:all .3s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.bacq:hover{background:#f0c820;transform:translateY(-1px);box-shadow:0 8px 28px rgba(244,208,63,.22)}
+.bwl{width:100%;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:13px;background:transparent;color:var(--ocean);border:1px solid var(--ocean);cursor:pointer;transition:all .3s;display:block;text-align:center;text-decoration:none}
+.bwl:hover{background:var(--ocean);color:var(--white)}
+.coa-note{font-size:.59rem;color:var(--dim);letter-spacing:.04em;line-height:1.65;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.coa-note strong{color:var(--gold);font-weight:500}
+
+/* EDITION GRID */
+.ed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.ec{background:rgba(22,45,69,.2);border:1px solid var(--border);transition:all .32s var(--ease);cursor:pointer;position:relative;overflow:hidden}
+.ec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,123,167,.07),transparent 55%);opacity:0;transition:opacity .3s}
+.ec:hover{border-color:var(--ocean);transform:translateY(-4px);box-shadow:0 18px 54px rgba(0,0,0,.45)}
+.ec:hover::before{opacity:1}
+.ec-img{aspect-ratio:4/3;overflow:hidden;background:var(--bg2);position:relative}
+.ec-img svg{position:absolute;inset:0;width:100%;height:100%}
+.ec-badge{position:absolute;top:10px;left:10px;font-size:.49rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;padding:3px 9px;pointer-events:none}
+.bgl{background:var(--gold);color:var(--navy)}
+.bgt{background:var(--teal);color:white}
+.bgr{background:#732222;color:#ffc8c8;border:1px solid rgba(255,80,80,.2)}
+.ec-body{padding:22px}
+.ec-ser{font-size:.53rem;font-weight:600;letter-spacing:.21em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
+.ec-title{font-family:'Cinzel',serif;font-size:.98rem;font-weight:600;letter-spacing:.06em;color:var(--white);margin-bottom:7px}
+.ec-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.74;margin-bottom:16px}
+.ec-sc-bar{height:3px;background:rgba(74,123,167,.18);border-radius:2px;overflow:hidden;margin-bottom:5px}
+.ec-sc-fill{height:100%;border-radius:2px}
+.ec-sc-fill.ok{background:linear-gradient(90deg,var(--teal),var(--gold))}
+.ec-sc-fill.hot{background:linear-gradient(90deg,#e85a20,#e84040)}
+.ec-foot{display:flex;align-items:flex-end;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}
+.ec-price{font-family:'Cinzel',serif;font-size:1.18rem;color:var(--gold)}
+.ec-ed{font-size:.53rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);line-height:1.55}
+.ec-cta{font-family:'Montserrat',sans-serif;font-size:.54rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;padding:8px 16px;background:transparent;color:var(--ocean);border:1px solid var(--ocean);cursor:pointer;transition:all .25s;white-space:nowrap}
+.ec-cta:hover{background:var(--ocean);color:var(--white)}
+
+/* PERKS */
+.perks{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 48px}
+.pk-g{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-top:44px}
+.pk{border-top:1px solid var(--border);padding-top:22px}
+.pk-icon{font-size:1.35rem;margin-bottom:12px;display:block}
+.pk-t{font-family:'Cinzel',serif;font-size:.92rem;font-weight:600;letter-spacing:.07em;color:var(--white);margin-bottom:7px}
+.pk-d{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.8}
+
+/* COA */
+.coa-sec{padding:72px 48px;background:var(--bg0);border-top:1px solid var(--border)}
+.coa-i{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.coa-doc{max-width:320px;background:var(--bg1);border:1px solid var(--b2);padding:36px 32px;display:flex;flex-direction:column;gap:11px;position:relative}
+.coa-doc::before{content:'';position:absolute;inset:8px;border:1px solid rgba(244,208,63,.06);pointer-events:none}
+.coa-logo-row{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.coa-logo-name{font-family:'Cinzel',serif;font-size:.82rem;font-weight:600;letter-spacing:.12em;color:var(--white)}
+.coa-hr{height:1px;background:var(--b2);margin:2px 0}
+.coa-head{font-family:'Cinzel',serif;font-size:.96rem;font-weight:400;letter-spacing:.1em;color:var(--gold);text-align:center;margin:7px 0}
+.coa-f{display:flex;flex-direction:column;gap:3px}
+.coa-fl{font-size:.48rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.coa-fv{font-size:.68rem;color:var(--off);letter-spacing:.05em;border-bottom:1px solid var(--border);padding-bottom:5px}
+.coa-sig{margin-top:auto;display:flex;flex-direction:column;gap:3px}
+.coa-sig-scrawl{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:rgba(245,240,232,.55);margin-bottom:2px}
+.coa-sig-line{height:1px;background:var(--b2);width:130px}
+.coa-sig-lbl{font-size:.47rem;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.coa-emboss{position:absolute;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--gbdr);display:flex;align-items:center;justify-content:center}
+.coa-emboss svg{width:28px;height:28px;opacity:.38}
+.coa-text p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:18px}
+
+/* WAITLIST */
+.wl{padding:72px 48px;background:var(--bg1);border-top:1px solid var(--border)}
+.wl-i{max-width:600px;margin:0 auto;text-align:center}
+.wl-t{font-family:'Cinzel',serif;font-size:clamp(1.4rem,3.5vw,2.3rem);font-weight:400;letter-spacing:.07em;line-height:1.14;color:var(--white);margin-bottom:11px}
+.wl-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:32px}
+.wl-form{display:flex;gap:0;max-width:500px;margin:0 auto}
+.wl-form input{flex:1;background:rgba(42,77,111,.2);border:1px solid var(--border);border-right:none;color:var(--white);font-family:'Montserrat',sans-serif;font-size:.76rem;padding:14px 16px;outline:none;transition:border-color .22s}
+.wl-form input:focus{border-color:var(--ocean)}
+.wl-form input::placeholder{color:rgba(122,154,184,.4);font-style:italic}
+.wl-form button{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:14px 24px;background:var(--gold);color:var(--navy);border:none;cursor:pointer;white-space:nowrap;transition:background .3s}
+.wl-form button:hover{background:#f0c820}
+.wl-note{font-size:.58rem;color:rgba(122,154,184,.45);letter-spacing:.05em;margin-top:11px}
+
+/* ACQUIRE MODAL */
+.modal{position:fixed;inset:0;z-index:300;background:rgba(5,10,18,.96);backdrop-filter:blur(22px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal.open{opacity:1;pointer-events:all}
+.mb{background:var(--bg1);border:1px solid var(--b2);padding:42px;max-width:530px;width:94vw;position:relative;max-height:90vh;overflow-y:auto;animation:su .38s var(--ease)}
+@keyframes su{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+.mc{position:absolute;top:15px;right:17px;background:none;border:none;color:var(--dim);cursor:pointer;font-size:.92rem;transition:color .2s}
+.mc:hover{color:var(--white)}
+.ms{font-size:.51rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.mt{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:400;letter-spacing:.07em;color:var(--white);margin-bottom:18px}
+.fg{display:flex;flex-direction:column;gap:13px}
+.fg label{font-size:.52rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+.fg input,.fg textarea,.fg select{width:100%;background:rgba(22,45,69,.3);border:1px solid var(--border);color:var(--white);font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:300;padding:11px 13px;outline:none;transition:border-color .22s;appearance:none}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--ocean)}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(122,154,184,.36);font-style:italic}
+.fg textarea{resize:vertical;min-height:78px}
+.fg select option{background:var(--bg1)}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.ob{background:rgba(22,45,69,.22);border:1px solid var(--border);padding:15px;margin-bottom:2px}
+.obh{font-size:.51rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.obr{display:flex;justify-content:space-between;font-size:.66rem;color:var(--off);padding:4px 0}
+.obr.tot{border-top:1px solid var(--border);padding-top:8px;margin-top:4px;font-family:'Cinzel',serif;font-size:.8rem;color:var(--gold)}
+.bsub{width:100%;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:16px;background:var(--gold);color:var(--navy);border:none;cursor:pointer;transition:all .3s}
+.bsub:hover{background:#f0c820}
+.modal-stripe-note{display:flex;align-items:center;gap:8px;font-size:.58rem;color:var(--muted);margin-top:10px;letter-spacing:.04em}
+.modal-stripe-note::before{content:'🔒';font-size:.7rem}
+.inqlg{font-size:.55rem;color:rgba(122,154,184,.4);letter-spacing:.04em;line-height:1.7;margin-top:9px}
+
+/* FOOTER */
+.foot{border-top:1px solid var(--border);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.foot-c{font-size:.58rem;letter-spacing:.05em;color:rgba(122,154,184,.45)}
+.foot-l{display:flex;gap:22px}
+.foot-l a{font-size:.58rem;letter-spacing:.05em;color:rgba(122,154,184,.45);text-decoration:none;transition:color .22s}
+.foot-l a:hover{color:var(--muted)}
+
+.toast{position:fixed;bottom:24px;right:24px;background:rgba(5,10,18,.97);border:1px solid var(--b2);backdrop-filter:blur(14px);padding:13px 19px;font-size:.67rem;letter-spacing:.05em;color:var(--white);z-index:400;transform:translateY(65px);opacity:0;transition:all .32s;max-width:300px}
+.toast.on{transform:translateY(0);opacity:1}
+.toast.g{border-color:var(--gold);color:var(--gold)}
+.toast.t{border-color:var(--teal);color:#3dd4c8}
+
+.rev{opacity:0;transform:translateY(18px);transition:opacity .65s,transform .65s}
+.rev.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+@media(max-width:1050px){.ed-grid{grid-template-columns:repeat(2,1fr)}.hi{grid-template-columns:1fr;gap:48px}.hv{height:270px}.pk-g{grid-template-columns:repeat(2,1fr)}.pi{grid-template-columns:repeat(3,1fr)}.coa-i{grid-template-columns:1fr;gap:48px}.coa-doc{max-width:100%}.feat{grid-template-columns:1fr}}
+@media(max-width:640px){nav,.hero,.proc,.wrap,.perks,.coa-sec,.wl,.foot{padding-left:20px;padding-right:20px}.ed-grid{grid-template-columns:1fr}.pk-g{grid-template-columns:1fr}.pi{grid-template-columns:1fr;gap:20px}.ps::after{display:none}.wl-form{flex-direction:column}.wl-form input{border-right:1px solid var(--border);border-bottom:none}.fgr{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="nlm" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="98" fill="#4A7BA7" stroke="#2a4d6f" stroke-width="1"/>
+      <polygon points="100,15 185,185 15,185" fill="#F4D03F" opacity=".85"/>
+      <polygon points="100,15 15,185 15,55" fill="#8B6BA3" opacity=".75"/>
+      <polygon points="100,15 185,55 185,185" fill="#6FA5A5" opacity=".75"/>
+      <polygon points="100,55 145,100 100,145 55,100" fill="#E8D77F" opacity=".6"/>
+      <circle cx="100" cy="100" r="50" fill="none" stroke="#2a4d6f" stroke-width="2.5"/>
+      <circle cx="100" cy="100" r="7" fill="#2a4d6f"/>
+    </svg>
+    <span class="nlt">Ben Ryan</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="editions.html" class="cur">Limited Editions</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact" class="ncta">Commission</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hbg"></div>
+  <div class="hi">
+    <div class="hl">
+      <div class="ey rev">Fine Art Prints</div>
+      <h1 class="rev">Limited<br>Editions</h1>
+      <p class="rev">Museum-quality archival prints in strictly limited editions. Each work is signed, numbered, and accompanied by a Certificate of Authenticity. Secure checkout via Stripe.</p>
+      <div class="trust rev">
+        <span class="tm">Signed by artist</span>
+        <span class="tm">Numbered edition</span>
+        <span class="tm">Certificate of Authenticity</span>
+        <span class="tm">100-year archival ink</span>
+        <span class="tm">Secure Stripe checkout</span>
+      </div>
+    </div>
+    <div class="hv rev">
+      <div class="stk sk1"><svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="225" fill="#172d44"/><circle cx="150" cy="112" r="90" fill="none" stroke="#4A7BA7" stroke-width=".5" opacity=".4"/></svg></div>
+      <div class="stk sk2"><svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="225" fill="#1a3248"/><polygon points="150,28 258,222 42,222" fill="none" stroke="#F4D03F" stroke-width=".5" opacity=".28"/></svg></div>
+      <div class="stk skm">
+        <div class="skm-inner">
+          <svg viewBox="0 0 300 263" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs><radialGradient id="sh" cx="65%" cy="28%"><stop offset="0%" stop-color="#F4D03F" stop-opacity=".32"/><stop offset="100%" stop-color="#1a3a5c" stop-opacity="0"/></radialGradient></defs>
+            <rect width="300" height="263" fill="#1a3a5c"/>
+            <ellipse cx="195" cy="75" rx="120" ry="80" fill="url(#sh)"/>
+            <rect y="163" width="300" height="100" fill="#07121e" opacity=".7"/>
+            <line x1="0" y1="163" x2="300" y2="165" stroke="#4A7BA7" stroke-width=".7" opacity=".65"/>
+            <path d="M0,188 Q75,172 150,192 Q225,210 300,188" fill="none" stroke="#4A7BA7" stroke-width=".4" opacity=".36"/>
+          </svg>
+          <div class="stk-lbl"><div class="stk-lbl-t">Pacific Light No. 7</div><div class="stk-lbl-s">Edition 7 of 25 · 2024</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<div class="proc">
+  <div class="pi">
+    <div class="ps rev"><span class="ps-icon">📷</span><div class="ps-lbl">Capture</div><div class="ps-desc">Medium-format digital or large-format film</div></div>
+    <div class="ps rev d1"><span class="ps-icon">🎞</span><div class="ps-lbl">Develop</div><div class="ps-desc">Darkroom-craft post-processing</div></div>
+    <div class="ps rev d2"><span class="ps-icon">🖨</span><div class="ps-lbl">Print</div><div class="ps-desc">Hahnemühle archival pigment</div></div>
+    <div class="ps rev d3"><span class="ps-icon">✍</span><div class="ps-lbl">Sign &amp; Number</div><div class="ps-desc">Hand-signed, embossed edition number</div></div>
+    <div class="ps rev"><span class="ps-icon">📜</span><div class="ps-lbl">Certificate</div><div class="ps-desc">CoA with embossed seal shipped with print</div></div>
+  </div>
+</div>
+
+<!-- EDITIONS -->
+<section class="wrap">
+  <div class="sec-ey rev">Featured Work</div>
+  <div class="sec-t rev" style="margin-bottom:0">Current Collection</div>
+
+  <!-- FEATURED -->
+  <div class="feat rev" style="margin-top:44px">
+    <div class="feat-img">
+      <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs><radialGradient id="fh" cx="65%" cy="28%"><stop offset="0%" stop-color="#F4D03F" stop-opacity=".36"/><stop offset="100%" stop-color="#1a3a5c" stop-opacity="0"/></radialGradient></defs>
+        <rect width="600" height="450" fill="#1a3a5c"/>
+        <ellipse cx="390" cy="126" rx="238" ry="158" fill="url(#fh)"/>
+        <rect y="288" width="600" height="162" fill="#0a1828" opacity=".75"/>
+        <line x1="0" y1="288" x2="600" y2="291" stroke="#4A7BA7" stroke-width="1" opacity=".62"/>
+        <path d="M0,325 Q150,292 300,322 Q450,350 600,318" fill="none" stroke="#4A7BA7" stroke-width=".6" opacity=".4"/>
+      </svg>
+    </div>
+    <div class="feat-body">
+      <span class="fb-badge">★ Featured Edition</span>
+      <div class="fb-ser">Coastal Series · 2024</div>
+      <h3 class="fb-title">Pacific Light<br>No. 7</h3>
+      <p class="fb-desc">Morning fog lifting over the Santa Barbara coast at low tide — the sea returning the light it borrowed from the sky. Shot at dawn, single exposure, natural light only.</p>
+      <div class="sc">
+        <div class="sc-row"><span class="sc-lbl">Edition Progress</span><span class="sc-num ok">12 of 25 remaining</span></div>
+        <div class="sc-bar"><div class="sc-fill ok" style="width:52%"></div></div>
+      </div>
+      <table class="sz-tbl" id="featTbl">
+        <thead><tr><th></th><th>Size</th><th>Paper</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr class="szrow sel" data-p="480" onclick="featSel(this)"><td><input type="radio" class="szradio" name="fs" checked></td><td>16 × 20 in</td><td>Photo Rag 308gsm</td><td>$480</td></tr>
+          <tr class="szrow" data-p="720" onclick="featSel(this)"><td><input type="radio" class="szradio" name="fs"></td><td>24 × 30 in</td><td>Photo Rag 308gsm</td><td>$720</td></tr>
+          <tr class="szrow" data-p="1200" onclick="featSel(this)"><td><input type="radio" class="szradio" name="fs"></td><td>40 × 50 in</td><td>Fine Art Pearl 285gsm</td><td>$1,200</td></tr>
+          <tr class="szrow" data-p="2400" onclick="featSel(this)"><td><input type="radio" class="szradio" name="fs"></td><td>60 × 75 in</td><td>Museum Grade 300gsm</td><td>$2,400</td></tr>
+        </tbody>
+      </table>
+      <button class="bacq" onclick="openModal(0)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+        Acquire via Stripe →
+      </button>
+      <a href="#waitlist" class="bwl">Join Collector Waitlist</a>
+      <p class="coa-note"><strong>Every print includes:</strong> Hand-signed · Edition number embossed · Certificate of Authenticity · Acid-free tissue · Flat-pack tube · 100-year archival guarantee · Secure payment via Stripe</p>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="sec-ey rev" style="margin-top:72px">All Editions</div>
+  <div class="ed-grid">
+
+    <div class="ec rev" onclick="openModal(1)">
+      <div class="ec-img">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#0a1e30"/>
+          <polygon points="0,200 65,120 130,158 195,88 260,125 320,78 400,110 400,300 0,300" fill="#1e4060" opacity=".9"/>
+          <circle cx="310" cy="55" r="4.5" fill="#F4D03F" opacity=".5"/>
+        </svg>
+        <span class="ec-badge bgl">Limited</span>
+      </div>
+      <div class="ec-body">
+        <div class="ec-ser">Landscape Series</div>
+        <div class="ec-title">Sierra Dusk</div>
+        <p class="ec-desc">Eastern Sierra at the copper hour. Edition of 10 — 7 remaining.</p>
+        <div class="ec-sc-bar"><div class="ec-sc-fill hot" style="width:30%"></div></div>
+        <div class="ec-foot"><div><div class="ec-price">From $540</div><div class="ec-ed">Ed. of 10 · 3 sold · 7 remain</div></div><button class="ec-cta" onclick="event.stopPropagation();openModal(1)">Acquire</button></div>
+      </div>
+    </div>
+
+    <div class="ec rev d1" onclick="openModal(2)">
+      <div class="ec-img">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#172d44"/>
+          <circle cx="200" cy="150" r="120" fill="none" stroke="#4A7BA7" stroke-width=".6" opacity=".42"/>
+          <polygon points="200,40 330,260 70,260" fill="none" stroke="#F4D03F" stroke-width=".5" opacity=".28"/>
+          <circle cx="200" cy="150" r="10" fill="#F4D03F" opacity=".42"/>
+        </svg>
+        <span class="ec-badge bgt">New</span>
+      </div>
+      <div class="ec-body">
+        <div class="ec-ser">Abstract Series</div>
+        <div class="ec-title">Geometric Silence</div>
+        <p class="ec-desc">Musical intervals as pure geometric form. Edition of 15, all sizes available.</p>
+        <div class="ec-sc-bar"><div class="ec-sc-fill ok" style="width:73%"></div></div>
+        <div class="ec-foot"><div><div class="ec-price">From $380</div><div class="ec-ed">Ed. of 15 · 4 sold · 11 remain</div></div><button class="ec-cta" onclick="event.stopPropagation();openModal(2)">Acquire</button></div>
+      </div>
+    </div>
+
+    <div class="ec rev d2" onclick="openModal(3)">
+      <div class="ec-img">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#0f2840"/>
+          <circle cx="120" cy="82" r="2.5" fill="white" opacity=".55"/><circle cx="200" cy="52" r="2" fill="white" opacity=".5"/><circle cx="295" cy="78" r="2" fill="white" opacity=".4"/><circle cx="350" cy="34" r="2" fill="white" opacity=".52"/>
+          <polygon points="0,210 65,140 130,175 200,115 265,155 330,100 400,132 400,300 0,300" fill="#1a3a5c" opacity=".9"/>
+        </svg>
+        <span class="ec-badge bgr">⚠ 4 left</span>
+      </div>
+      <div class="ec-body">
+        <div class="ec-ser">Nocturne Series</div>
+        <div class="ec-title">High Desert Stars</div>
+        <p class="ec-desc">Four-hour Mojave exposure. Edition of 10 — only 4 remain.</p>
+        <div class="ec-sc-bar"><div class="ec-sc-fill hot" style="width:40%"></div></div>
+        <div class="ec-foot"><div><div class="ec-price">From $680</div><div class="ec-ed">Ed. of 10 · 4 remaining</div></div><button class="ec-cta" onclick="event.stopPropagation();openModal(3)">Acquire</button></div>
+      </div>
+    </div>
+
+    <div class="ec rev" onclick="openModal(4)">
+      <div class="ec-img">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#243d55"/>
+          <rect y="198" width="400" height="102" fill="#0d2033" opacity=".8"/>
+          <path d="M0,198 Q100,168 200,195 Q300,218 400,188 L400,300 L0,300Z" fill="#1a4060" opacity=".55"/>
+          <line x1="0" y1="198" x2="400" y2="198" stroke="#4A7BA7" stroke-width=".65" opacity=".6"/>
+        </svg>
+        <span class="ec-badge bgl">Limited</span>
+      </div>
+      <div class="ec-body">
+        <div class="ec-ser">Coastal Series</div>
+        <div class="ec-title">Channel Islands</div>
+        <p class="ec-desc">The 40-mile sea-to-sky seam defining the California coast from Santa Barbara.</p>
+        <div class="ec-sc-bar"><div class="ec-sc-fill ok" style="width:70%"></div></div>
+        <div class="ec-foot"><div><div class="ec-price">From $460</div><div class="ec-ed">Ed. of 20 · 6 sold · 14 remain</div></div><button class="ec-cta" onclick="event.stopPropagation();openModal(4)">Acquire</button></div>
+      </div>
+    </div>
+
+    <div class="ec rev d1" onclick="openModal(5)">
+      <div class="ec-img">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <defs><radialGradient id="ap" cx="40%" cy="40%"><stop offset="0%" stop-color="#8B6BA3" stop-opacity=".42"/><stop offset="100%" stop-color="#0c2338" stop-opacity="0"/></radialGradient></defs>
+          <rect width="400" height="300" fill="#0c2338"/>
+          <ellipse cx="160" cy="120" rx="100" ry="108" fill="url(#ap)"/>
+          <circle cx="160" cy="110" r="76" fill="#163450" opacity=".7"/>
+          <rect x="130" y="210" width="60" height="75" rx="3" fill="#132e50" opacity=".8"/>
+        </svg>
+        <span class="ec-badge bgt">Artist's Proof</span>
+      </div>
+      <div class="ec-body">
+        <div class="ec-ser">Portrait Series</div>
+        <div class="ec-title">Solitude</div>
+        <p class="ec-desc">Artist's Proof — only 5 exist, 3 remain. Each includes a handwritten title.</p>
+        <div class="ec-sc-bar"><div class="ec-sc-fill hot" style="width:40%"></div></div>
+        <div class="ec-foot"><div><div class="ec-price">From $650</div><div class="ec-ed">A/P Edition · 3 of 5 remain</div></div><button class="ec-cta" onclick="event.stopPropagation();openModal(5)">Acquire</button></div>
+      </div>
+    </div>
+
+    <div class="ec rev d2" onclick="openModal(6)">
+      <div class="ec-img">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <defs><radialGradient id="la" cx="35%" cy="30%"><stop offset="0%" stop-color="#D4A060" stop-opacity=".26"/><stop offset="100%" stop-color="#0e2436" stop-opacity="0"/></radialGradient></defs>
+          <rect width="400" height="300" fill="#0e2436"/>
+          <ellipse cx="140" cy="88" rx="200" ry="126" fill="url(#la)"/>
+          <polygon points="0,220 55,150 110,188 175,122 230,162 290,110 360,148 400,120 400,300 0,300" fill="#2a4d6f" opacity=".9"/>
+          <polygon points="0,250 65,190 130,225 200,165 265,200 340,155 400,185 400,300 0,300" fill="#1a3a5c" opacity=".84"/>
+        </svg>
+        <span class="ec-badge bgr">⚠ 3 left</span>
+      </div>
+      <div class="ec-body">
+        <div class="ec-ser">Landscape Series</div>
+        <div class="ec-title">Eastern Sierra, 5am</div>
+        <p class="ec-desc">Pre-dawn Owens Valley — the peaks in first light while the valley holds its darkness.</p>
+        <div class="ec-sc-bar"><div class="ec-sc-fill hot" style="width:30%"></div></div>
+        <div class="ec-foot"><div><div class="ec-price">From $850</div><div class="ec-ed">Ed. of 10 · 3 remaining</div></div><button class="ec-cta" onclick="event.stopPropagation();openModal(6)">Acquire</button></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PERKS -->
+<section class="perks">
+  <div style="max-width:1300px;margin:0 auto">
+    <div class="sec-ey rev">Why Collect</div>
+    <div class="sec-t rev" style="margin-bottom:0">The Promise to Every Collector</div>
+    <div class="pk-g">
+      <div class="pk rev"><span class="pk-icon">📜</span><div class="pk-t">Certificate of Authenticity</div><p class="pk-d">Hand-signed, embossed CoA documenting title, edition number, paper, and date — the permanent provenance record for your collection.</p></div>
+      <div class="pk rev d1"><span class="pk-icon">🎨</span><div class="pk-t">Hahnemühle Archival Paper</div><p class="pk-d">Photo Rag or Fine Art Pearl with pigment inks rated for 100+ years of lightfast stability under museum conditions.</p></div>
+      <div class="pk rev d2"><span class="pk-icon">🔒</span><div class="pk-t">Secure Stripe Checkout</div><p class="pk-d">Payment handled by Stripe — the same platform used by major galleries. Your card details never touch our servers.</p></div>
+      <div class="pk rev d3"><span class="pk-icon">🛡</span><div class="pk-t">Edition Integrity</div><p class="pk-d">Once an edition closes, the file is permanently deleted. No further prints are ever made. Your investment is protected unconditionally.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COA -->
+<section class="coa-sec">
+  <div class="coa-i">
+    <div class="rev">
+      <div class="coa-doc">
+        <div class="coa-logo-row">
+          <svg width="24" height="24" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="98" fill="#4A7BA7" stroke="#2a4d6f" stroke-width="1"/><polygon points="100,15 185,185 15,185" fill="#F4D03F" opacity=".85"/><circle cx="100" cy="100" r="50" fill="none" stroke="#2a4d6f" stroke-width="2.5"/><circle cx="100" cy="100" r="7" fill="#2a4d6f"/></svg>
+          <div class="coa-logo-name">Ben Ryan Photography</div>
+        </div>
+        <div class="coa-hr"></div>
+        <div class="coa-head">Certificate of Authenticity</div>
+        <div class="coa-f"><div class="coa-fl">Title</div><div class="coa-fv">Pacific Light No. 7</div></div>
+        <div class="coa-f"><div class="coa-fl">Series</div><div class="coa-fv">Coastal Series · 2024</div></div>
+        <div class="coa-f"><div class="coa-fl">Edition Number</div><div class="coa-fv">7 of 25</div></div>
+        <div class="coa-f"><div class="coa-fl">Print Size &amp; Paper</div><div class="coa-fv">24 × 30 in · Hahnemühle Photo Rag 308gsm</div></div>
+        <div class="coa-f"><div class="coa-fl">Medium</div><div class="coa-fv">Archival pigment print · Lightfast 100+ years</div></div>
+        <div class="coa-sig">
+          <div class="coa-sig-scrawl">Ben Ryan</div>
+          <div class="coa-sig-line"></div>
+          <div class="coa-sig-lbl">Photographer's Signature · Santa Barbara, CA</div>
+        </div>
+        <div class="coa-emboss">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="90" fill="none" stroke="#F4D03F" stroke-width="1.5"/><circle cx="100" cy="100" r="70" fill="none" stroke="#F4D03F" stroke-width=".8" opacity=".5"/><polygon points="100,25 185,175 15,175" fill="none" stroke="#F4D03F" stroke-width="1"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="coa-text rev">
+      <div class="sec-ey" style="margin-bottom:13px">Provenance &amp; Authenticity</div>
+      <div class="sec-t" style="font-size:clamp(1.3rem,3vw,2rem);margin-bottom:22px">Every Print Comes<br>With Its Story</div>
+      <p>Each limited edition print ships with a hand-signed, embossed Certificate of Authenticity documenting the work's full provenance — title, series, edition number, paper stock, and date of production.</p>
+      <p>The certificate is printed on archival cotton rag, signed in the artist's hand, and embossed with the studio seal. It travels with the print as the permanent provenance record for your collection.</p>
+      <p>Once an edition is closed, the file is permanently deleted. This commitment to edition integrity is unconditional — no further prints are ever produced.</p>
+      <button class="bacq" style="width:auto;padding:16px 32px;margin-top:8px" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+        Join the Collector List
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="wl" id="waitlist">
+  <div class="wl-i">
+    <div class="sec-ey rev" style="justify-content:center">New Editions</div>
+    <h2 class="wl-t rev">Be First to Know</h2>
+    <p class="wl-s rev">New editions sell out quickly — often before they're publicly listed. Join the collector list for advance notice, pre-release pricing, and first access.</p>
+    <form class="wl-form rev" onsubmit="joinWL(event)">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Join the List →</button>
+    </form>
+    <p class="wl-note rev">No spam. One email per new edition. Unsubscribe anytime. <!-- INTEGRATION: wire to MailerLite group via Listmonk/Brevo --></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <span class="foot-c">© 2025 Ben Ryan Photography · All images copyright protected · benryanphotographer.com</span>
+  <div class="foot-l">
+    <a href="gallery.html">Gallery</a>
+    <a href="index.html#contact">Commission</a>
+    <a href="index.html#about">About</a>
+  </div>
+</footer>
+
+<!-- ACQUIRE MODAL -->
+<div class="modal" id="modal">
+  <div class="mb">
+    <button class="mc" onclick="closeModal()">✕</button>
+    <div class="ms" id="mSer">Coastal Series · 2024</div>
+    <div class="mt" id="mTitle">Acquire: Pacific Light No. 7</div>
+    <form class="fg" onsubmit="submitModal(event)">
+      <div class="fgr">
+        <div><label>First Name</label><input type="text" placeholder="First" required></div>
+        <div><label>Last Name</label><input type="text" placeholder="Last" required></div>
+      </div>
+      <div><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+      <div><label>Phone (optional)</label><input type="tel" placeholder="+1 (___) ___-____"></div>
+      <div><label>Print Size</label>
+        <select id="mSz" onchange="recalc()">
+          <option value="480">16 × 20 in — Photo Rag 308gsm · $480</option>
+          <option value="720">24 × 30 in — Photo Rag 308gsm · $720</option>
+          <option value="1200">40 × 50 in — Fine Art Pearl 285gsm · $1,200</option>
+          <option value="2400">60 × 75 in — Museum Grade 300gsm · $2,400</option>
+        </select>
+      </div>
+      <div><label>Framing (optional add-on)</label>
+        <select id="mFr" onchange="recalc()">
+          <option value="0">No frame — print only</option>
+          <option value="180">Natural maple float frame (+$180)</option>
+          <option value="220">Espresso gallery frame (+$220)</option>
+          <option value="195">Black metal gallery frame (+$195)</option>
+        </select>
+      </div>
+      <div class="ob">
+        <div class="obh">Order Summary</div>
+        <div class="obr"><span id="obPL">16 × 20 in print</span><span id="obPP">$480</span></div>
+        <div class="obr" id="obFR" style="display:none"><span>Framing</span><span id="obFP">$180</span></div>
+        <div class="obr"><span>Shipping</span><span>Quoted on invoice</span></div>
+        <div class="obr tot"><span>Estimated Total</span><span id="obTot">$480</span></div>
+      </div>
+      <div><label>Message (optional)</label><textarea placeholder="Where it will hang, questions, delivery preferences…"></textarea></div>
+      <button type="submit" class="bsub">Send Acquisition Request — Stripe Invoice Follows →</button>
+    </form>
+    <div class="modal-stripe-note">Secure payment via Stripe. Ben sends a payment link after confirming availability — you are not charged automatically.</div>
+    <p class="inqlg">Your information is used only to process this request. Never shared, never spammed.</p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const RO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.07,rootMargin:'0px 0px -25px 0px'});
+document.querySelectorAll('.rev').forEach(el=>RO.observe(el));
+
+function featSel(row){
+  document.querySelectorAll('#featTbl .szrow').forEach(r=>{r.classList.remove('sel');r.querySelector('.szradio').checked=false;});
+  row.classList.add('sel');row.querySelector('.szradio').checked=true;
+}
+
+const ED=[
+  {s:'Coastal Series · 2024',t:'Pacific Light No. 7',base:480},
+  {s:'Landscape Series · 2023',t:'Sierra Dusk',base:540},
+  {s:'Abstract Series · 2024',t:'Geometric Silence',base:380},
+  {s:'Nocturne Series · 2024',t:'High Desert Stars',base:680},
+  {s:'Coastal Series · 2024',t:'Channel Islands',base:460},
+  {s:'Portrait Series · 2024',t:'Solitude',base:650},
+  {s:'Landscape Series · 2024',t:'Eastern Sierra, 5am',base:850},
+];
+let curEd=0;
+
+function openModal(idx){
+  curEd=idx;const d=ED[idx]||ED[0];
+  document.getElementById('mSer').textContent=d.s;
+  document.getElementById('mTitle').textContent='Acquire: '+d.t;
+  document.getElementById('mSz').options[0].text=`16 × 20 in — Photo Rag 308gsm · $${d.base.toLocaleString()}`;
+  document.getElementById('mSz').options[1].text=`24 × 30 in — Photo Rag 308gsm · $${Math.round(d.base*1.5).toLocaleString()}`;
+  document.getElementById('mSz').options[2].text=`40 × 50 in — Fine Art Pearl 285gsm · $${Math.round(d.base*2.5).toLocaleString()}`;
+  document.getElementById('mSz').options[3].text=`60 × 75 in — Museum Grade · $${Math.round(d.base*5).toLocaleString()}`;
+  document.getElementById('mSz').selectedIndex=0;recalc();
+  document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+
+function recalc(){
+  const d=ED[curEd]||ED[0];
+  const mults=[1,1.5,2.5,5];
+  const si=document.getElementById('mSz').selectedIndex;
+  const sz=Math.round(d.base*mults[si]);
+  const fr=+document.getElementById('mFr').value||0;
+  const sl=document.getElementById('mSz').options[si].text.split('·')[0].trim();
+  document.getElementById('obPL').textContent=sl;
+  document.getElementById('obPP').textContent='$'+sz.toLocaleString();
+  document.getElementById('obFR').style.display=fr>0?'flex':'none';
+  document.getElementById('obFP').textContent='+$'+fr;
+  document.getElementById('obTot').textContent='$'+(sz+fr).toLocaleString();
+}
+
+function submitModal(e){
+  e.preventDefault();const btn=e.target.querySelector('.bsub');btn.textContent='Sending…';btn.disabled=true;
+  /* INTEGRATION POINT: POST to backend → send confirmation email → follow up with Stripe payment link */
+  /* Example: fetch('/api/acquire',{method:'POST',body:new FormData(e.target)}) */
+  setTimeout(()=>{
+    closeModal();
+    toast('Acquisition request received! Ben will reply within 48 hours with a secure Stripe payment link.','g');
+    btn.textContent='Send Acquisition Request — Stripe Invoice Follows →';btn.disabled=false;
+    e.target.reset();recalc();
+  },1100);
+}
+
+function joinWL(e){
+  e.preventDefault();const btn=e.target.querySelector('button');btn.textContent='Adding…';btn.disabled=true;
+  /* INTEGRATION POINT: POST email to MailerLite group via Listmonk webhook or MailerLite API */
+  setTimeout(()=>{
+    e.target.reset();btn.textContent='✓ You\'re on the list';
+    toast('Welcome to the collector list. You\'ll receive advance notice of every new edition.','g');
+    setTimeout(()=>{btn.textContent='Join the List →';btn.disabled=false;},3500);
+  },900);
+}
+
+document.querySelectorAll('.ec-img,.feat-img,.skm-inner,.coa-doc').forEach(el=>{
+  el.addEventListener('contextmenu',e=>{e.preventDefault();toast('© Ben Ryan Photography — images are copyright protected.');});
+  el.addEventListener('dragstart',e=>e.preventDefault());
+});
+document.addEventListener('keydown',e=>{if(document.getElementById('modal').classList.contains('open')&&e.key==='Escape')closeModal();});
+
+let _tt;
+function toast(m,c=''){const t=document.getElementById('toast');t.textContent=m;t.className='toast on'+(c?' '+c:'');clearTimeout(_tt);_tt=setTimeout(()=>{t.className='toast';},4800);}
+</script>
+</body>
+</html>
