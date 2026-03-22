@@ -1,0 +1,48 @@
+# robots.txt — benryanphotographer.com
+# Ben Ryan Photography, Santa Barbara, CA
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Disallow any future admin or private paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /.git/
+
+# Block AI training scrapers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Allow Google Image Search (critical for a photo site)
+User-agent: Googlebot-Image
+Allow: /
+
+# Allow Google AdsBot
+User-agent: AdsBot-Google
+Allow: /
+
+# Sitemap
+Sitemap: https://benryanphotographer.com/sitemap.xml
