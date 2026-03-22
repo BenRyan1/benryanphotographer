@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="KjfqqnxTd1LgzCRHt95s1PTV2bs5d4AloyrbHakXNS0" />
 <meta name="description" content="Ben Ryan — Fine Art Photographer. Santa Barbara, California. Gallery, prints, and limited editions.">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Ben Ryan — Photographer">
@@ -1945,8 +1944,8 @@
       <div class="lightbox-price" id="lbPrice">From $480</div>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <button class="btn-primary" style="font-size:0.62rem;padding:13px 28px;" onclick="showToast('Redirecting to purchase inquiry...')">Acquire Print</button>
-        <button class="btn-secondary" style="font-size:0.62rem;padding:13px 28px;" onclick="showToast('Download info sheet for this print.')">Info Sheet</button>
+        <button class="btn-primary" style="font-size:0.62rem;padding:13px 28px;" onclick="acquirePrint()">Acquire Print</button>
+        <button class="btn-secondary" style="font-size:0.62rem;padding:13px 28px;" onclick="window.location.href='editions.html'">View All Editions</button>
       </div>
     </div>
   </div>
@@ -1961,7 +1960,7 @@
       <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z"/>
     </svg>
     <p class="protection-text">
-      <strong>© Ben Ryan. All rights reserved.</strong> All photographs are protected by copyright law. Unauthorized reproduction, distribution, or commercial use of any image on this site is strictly prohibited. Images are digitally watermarked and monitored. Licensed use inquiries: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a1915140e1b190e3a181f1408031b140a12150e151d081b0a121f0854191517">[email&#160;protected]</a>
+      <strong>© Ben Ryan. All rights reserved.</strong> All photographs are protected by copyright law. Unauthorized reproduction, distribution, or commercial use of any image on this site is strictly prohibited. Images are digitally watermarked and monitored. Licensed use inquiries: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b5854554f5a584f7b595e5549425a554b53544f545c495a4b535e4915585456">[email&#160;protected]</a>
     </p>
   </div>
 </div>
@@ -2103,7 +2102,13 @@
           <div class="author-avatar">MH</div>
           <div>
             <div class="author-name">Margaret H.</div>
-            <div class="author-title">Private Collector · S class="testimonial-text">We commissioned Ben for our firm's main reception space. The result was transformative. He spent time understanding our culture and delivered a single image that has sparked more client conversations than any piece of branding we've ever done.</p>
+            <div class="author-title">Private Collector · Santa Barbara</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-text">We commissioned Ben for our firm's main reception space. The result was transformative. He spent time understanding our culture and delivered a single image that has sparked more client conversations than any piece of branding we've ever done.</p>
         <div class="testimonial-author">
           <div class="author-avatar">RP</div>
           <div>
@@ -2144,7 +2149,7 @@
           <div class="contact-detail-icon">✉</div>
           <div>
             <div class="contact-detail-label">Email</div>
-            <div class="contact-detail-text">contact@benryanphotographer.com</div>
+            <div class="contact-detail-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3d5e5253495c5e497d5f58534f445c534d555249525a4f5c4d55584f135e5250">[email&#160;protected]</a></div>
           </div>
         </div>
 
@@ -2160,7 +2165,7 @@
           <div class="contact-detail-icon">◈</div>
           <div>
             <div class="contact-detail-label">Print Inquiries</div>
-            <div class="contact-detail-text">prints@benryanphotographer.com</div>
+            <div class="contact-detail-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b7b7962657f784b696e6579726a657b63647f646c796a7b636e7925686466">[email&#160;protected]</a></div>
           </div>
         </div>
 
@@ -2322,7 +2327,7 @@
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ---- NAV SCROLL ---- */
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -2439,24 +2444,29 @@ function submitForm(e) {
   setTimeout(() => {
     btn.textContent = 'Inquiry Sent ✓';
     btn.style.background = '#008080';
-    showToast('Thank you! I\'ll be in touch within 48 hours.', true);
-    setTimeout(() => {
-      e.target.reset();
-      btn.textContent = 'Send Inquiry';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 4000);
+    showToast('Thank you! I\'ll be in touch within 48 hours.', true)
   }, 1200);
 }
 
-/* ---- TOAST ---- */
-let toastTimer;
-function showToast(msg, gold = false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (gold ? ' toast-gold' : '');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.className = 'toast'; }, 4000);
+/* ---- ACQUIRE PRINT — scroll to contact + pre-fill ---- */
+function acquirePrint() {
+  const lbTitle = document.getElementById('lbTitle')?.textContent || '';
+  const lbPrice = document.getElementById('lbPrice')?.textContent || '';
+  // Close lightbox
+  document.getElementById('lightbox')?.classList.remove('active');
+  document.body.style.overflow = '';
+  // Scroll to contact section
+  const contact = document.getElementById('contact') || document.querySelector('.contact-section') || document.querySelector('section[id*=contact]');
+  if (contact) {
+    contact.scrollIntoView({ behavior: 'smooth' });
+    // Pre-fill inquiry type
+    setTimeout(() => {
+      const sel = document.getElementById('inquiry');
+      if (sel) sel.value = 'Print Acquisition';
+      const msg = document.getElementById('message');
+      if (msg && lbTitle) msg.value = 'I am interested in acquiring: ' + lbTitle + ' ' + lbPrice;
+    }, 600);
+  }
 }
 </script>
 </body>
